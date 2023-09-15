@@ -15,7 +15,7 @@ clinical cohorts.
 We consider a training dataset
 
 $$
-\mathcal{D} = \{(x_{1:T}^{i}, z_{1:T}^{i}) \}_{1\leq i \leq n_d}
+\mathcal{D} = \{ (x_{1:T}^{i}, z_{1:T}^{i}) \}_{1\leq i \leq n_d}
 $$
 
 consisting of $`n_d`$ sequences of states and observations paired in time. We
@@ -90,20 +90,21 @@ instances change their cluster assignment at a given iteration.
 
 All model training and predictions are done in Python. We provide a
 pip-installable package
-[unsupervised-multimodal-trajectory-modeling](https://test.pypi.org/project/unsupervised-multimodal-trajectory-modeling/)
-to do much of the work for you. It can be installed with
+[unsupervised-multimodal-trajectory-modeling](https://pypi.org/project/unsupervised-multimodal-trajectory-modeling/)
+to do much of the work for you. It can be installed with dependencies as
+follows:
 
 ```
 pip3 install -r requirements.txt
-pip3 install -i https://test.pypi.org/simple/ unsupervised-multimodal-trajectory-modeling
 ```
 
-or in a [virtual environment](https://docs.python.org/3/library/venv.html) with:
+or in a [virtual environment](https://docs.python.org/3/library/venv.html)
+with:
+
 ```
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
-pip3 install -i https://test.pypi.org/simple/ unsupervised-multimodal-trajectory-modeling
 ```
 
 ### Adapting the code for your own use
@@ -147,6 +148,10 @@ A typical workflow for a new dataset looks like this:
 
    For real-life examples, we are often interested in profiling our clusters to
    better understand them.
+
+4. We have an extended framework to incorporate nonlinearities into our state
+   and measurement models. Check out
+   [inference_nonlinear.py](./inference_nonlinear.py) for a minimal example.
 
 #### Caveats
 
