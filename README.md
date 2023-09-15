@@ -86,13 +86,6 @@ which EM gets its name):
 Optimization completes after a fixed (large) number of steps or when no data
 instances change their cluster assignment at a given iteration.
 
-The approach (in [framework](./framework)) uses mixtures the above modeling
-formulation for training and inference. A Bayesian version of this approach was
-pioneered by Chiappa and Barber[^1]. The EM approach we take with hard cluster
-assignment allows us to extend the above model to to nonlinear specifications
-(see [framework_extended](./framework_extended)), with the tradeoff that
-certain types of model marginalisation are currently unsupported.
-
 #### To run the code
 
 All model training and predictions are done in Python. We provide a
