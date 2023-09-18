@@ -41,7 +41,7 @@ We adopt a mixture of state space models for the data:
 
 $$
 p(z^i_{1:T}, x^i_{1:T})
-		= \sum_{c=1}^{n_c} \pi_{c} \delta_{ \\{c=c^i \\} } \bigg( p(z_1^i| c)
+		= \sum_{c=1}^{n_c} \pi_{c} \delta_{ \\{ c=c^i \\} } \bigg( p(z_1^i| c)
 		\prod_{t=2}^T p(z_t^i | z_{t-1}^i, c) \prod_{t=1}^T p(x_t^i | z_t^i, c) \bigg)
 $$
 
@@ -67,7 +67,7 @@ Gaussian density with mean $`\mu`$ and covariance $`\Sigma`$, yielding:
 
 $$
 p(z^i_{1:T}, x^i_{1:T})
-		= \sum_{c=1}^{n_c} \pi_{c} \delta_{ \\{c=c^i \\} } \big( \eta_d(z_1^i; m_c, S_c)
+		= \sum_{c=1}^{n_c} \pi_{c} \delta_{ \\{ c=c^i \\} } \big( \eta_d(z_1^i; m_c, S_c)
 		\prod_{t=2}^T \eta_d(z_t^i; z_{t-1}^iA_c, \Gamma_c) \prod_{t=1}^T
 		\eta_\ell(x_t^i; z_t^iH_c, \Lambda_c) \big).
 $$
@@ -113,52 +113,31 @@ pip3 install -r requirements.txt
 
 A typical workflow for a new dataset looks like this:
 
-1. Create a new `data_*.py` file that organises the data into tensors of states
-   and measurements as described above. Often, we include functionality for
-   plotting trajectories of states by inferred cluster here. This is also a
-   useful place to wrangle auxiliary data that will then be used to profile
-   learned clusters. For example [data_synthetic.py](./data_synthetic.py),
-   gives us trajectories in state space that look like this:
+1. Create functions to place your data into the form as described above, like
+   with [data_synthetic.ipynb](./data_synthetic.ipynb).
 
-   <img src="./figures/synthetic_trajectories.png" 
-    alt="trajectories in state space" 
-    style="max-width:700px;width:100%">
-
-2. Run a model selection script to create plots of BIC vs. number of clusters.
-   Import the `data_*.py` file you created in the previous step and modify
-   [model_selection_synthetic.py](./model_selection_synthetic.py) as needed.
-   This will give us a plot like so:
-
-   <img src="./figures/synthetic_elbow_plot_BIC.png" 
-       alt="plot of BIC vs. number of clusters" 
-       style="max-width:700px;width:100%">
-
-   We know the data was generated from a 3-component mixture model, and the BIC
-   plot above reflects that. We now focus on models with 3 clusters.
+2. Run a model selection script to create plots of BIC vs. number of clusters,
+   as in [model_selection_synthetic.ipynb](./model_selection_synthetic.ipynb).
 
 3. Experiment with training and testing, like in
-   [inference_synthetic.py](./inference_synthetic.py). We can, for example,
-   train a model on one set and then predict cluster membership for a new
-   dataset. When both datasets were generated according to the same
+   [inference_synthetic.ipynb](./inference_synthetic.ipynb). We can, for
+   example, train a model on one set and then predict cluster membership for a
+   new dataset. When both datasets were generated according to the same
    specifications, we find very good agreement for this example, even when
-   predictions are made without access to the states. Here's a confusion matrix
-   (having generated the test set, we know ground truth):
-
-   <img src="./figures/synthetic_confusion_matrix_test_no_hidden.png" 
-       alt="plot of BIC vs. number of clusters" 
-       style="max-width:500px;width:100%">
-
-   For real-life examples, we are often interested in profiling our clusters to
-   better understand them.
+   predictions are made without access to the states. For real-life examples,
+   we are often interested in profiling our clusters to better understand them.
 
 4. We have an extended framework to incorporate nonlinearities into our state
    and measurement models. Check out
-   [inference_nonlinear.py](./inference_nonlinear.py) for a minimal example.
+   [inference_nonlinear.ipynb](./inference_nonlinear.ipynb) for a minimal
+   example.
 
 #### Caveats
 
 Some efforts have been made to handle edge cases. For a given training run, if
 any cluster becomes too small, training automatically terminates.
+
+---
 
 [^1]:
     S. Chiappa and D. Barber. _Dirichlet Mixtures of Bayesian Linear Gaussian
@@ -176,6 +155,7 @@ Format code with:
 ```
 black .
 prettier --write --print-width 79 --prose-wrap always **/*.md
+pip3 list --format=freeze > requirements.txt
 ```
 
 Send all to zfs with:
