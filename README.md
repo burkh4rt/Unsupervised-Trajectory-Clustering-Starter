@@ -1,6 +1,7 @@
 ## Unsupervised Trajectory Clustering: Getting Started
 
 [![DOI](https://zenodo.org/badge/692067654.svg)](https://zenodo.org/badge/latestdoi/692067654)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/burkh4rt/Unsupervised-Trajectory-Clustering-Starter/ipynb)
 
 The code uses mixtures of state space models to perform unsupervised clustering
 of short trajectories. Within the state space framework, we let
