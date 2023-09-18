@@ -7,6 +7,7 @@ Compares AIC/BIC/objective vs. number of clusters
 import pathlib
 
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 
 from unsupervised_multimodal_trajectory_modeling.linear_gaussian import (
@@ -26,13 +27,13 @@ plt.rcParams["font.size"] = 12
 
 pwd = pathlib.Path(__file__).absolute().parent
 alpha = 1.0
-n_cluster_list = range(1, 11)
+n_cluster_list = range(1, 8)
 save_figs = True
 show_figs = False
 
 
 def main():
-    z_orig, x, c, _, _ = data.get_data(1000)
+    z_orig, x, c, _, _ = data.get_data(1000, rng=np.random.default_rng(42))
     z, std_param = util.standardize(z_orig, return_params=True)
 
     """

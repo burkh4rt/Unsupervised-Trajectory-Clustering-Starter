@@ -176,7 +176,7 @@ def get_data(
 
 
 def set_model_correspondence(
-    mdl: mixmodel.MMLinGaussSS_Marginalisable, true_labels: np.array
+    mdl, true_labels: np.array
 ) -> None:
     """takes a trained model and sets the cluster correspondence to minimise
      the discrepancy between A,B,C and 1,2,3 -- note that clusters are only
