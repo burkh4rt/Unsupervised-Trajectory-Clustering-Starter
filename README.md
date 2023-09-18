@@ -1,5 +1,7 @@
 ## Unsupervised Trajectory Clustering: Getting Started
 
+[![DOI](https://zenodo.org/badge/692067654.svg)](https://zenodo.org/badge/latestdoi/692067654)
+
 The code uses mixtures of state space models to perform unsupervised clustering
 of short trajectories. Within the state space framework, we let
 expensive-to-gather biomarkers correspond to hidden states and readily
@@ -39,8 +41,8 @@ We adopt a mixture of state space models for the data:
 
 $$
 p(z^i_{1:T}, x^i_{1:T})
-		= \sum_{c=1}^{n_c} \pi_{c} \delta_{\{c=c^i\}} \big( p(z_1^i| c)
-		\prod_{t=2}^T p(z_t^i | z_{t-1}^i, c) \prod_{t=1}^T p(x_t^i | z_t^i, c) \big)
+		= \sum_{c=1}^{n_c} \pi_{c} \delta_{ \\{c=c^i \\} } \bigg( p(z_1^i| c)
+		\prod_{t=2}^T p(z_t^i | z_{t-1}^i, c) \prod_{t=1}^T p(x_t^i | z_t^i, c) \bigg)
 $$
 
 Each individual $`i`$ is independently assigned to some cluster $`c^i`$ with
@@ -65,7 +67,7 @@ Gaussian density with mean $`\mu`$ and covariance $`\Sigma`$, yielding:
 
 $$
 p(z^i_{1:T}, x^i_{1:T})
-		= \sum_{c=1}^{n_c} \pi_{c} \delta_{\{c=c^i\}} \big( \eta_d(z_1^i; m_c, S_c)
+		= \sum_{c=1}^{n_c} \pi_{c} \delta_{ \\{c=c^i \\} } \big( \eta_d(z_1^i; m_c, S_c)
 		\prod_{t=2}^T \eta_d(z_t^i; z_{t-1}^iA_c, \Gamma_c) \prod_{t=1}^T
 		\eta_\ell(x_t^i; z_t^iH_c, \Lambda_c) \big).
 $$
@@ -74,7 +76,7 @@ In particular, we assume that the variables we are modeling are continuous and
 changing over time. When we train a model like the above, we take a dataset
 $`\mathcal{D}`$ and an arbitrary set of cluster assignments $`c^i`$ (as these
 are also latent/ hidden from us) and iteratively perform M and E steps (from
-which EM gets its name):
+which EM[^2] gets its name):
 
 - (E) Expectation step: given the current model, we assign each data instance
   $`(z^i_{1:T}, x^i_{1:T})`$ to the cluster to which it is mostly likely to
@@ -162,6 +164,11 @@ any cluster becomes too small, training automatically terminates.
     S. Chiappa and D. Barber. _Dirichlet Mixtures of Bayesian Linear Gaussian
     State-Space Models: a Variational Approach._ Tech. rep. 161. Max Planck
     Institute for Biological Cybernetics, 2007.
+
+[^2]:
+    A. Dempster, N. Laird, and D. B. Rubin. _Maximum Likelihood from  
+    Incomplete Data via the EM Algorithm._ J. Roy. Stat. Soc. Ser. B (Stat.
+    Methodol.) 39.1 (1977), pp. 1–38.
 
 <!---
 
