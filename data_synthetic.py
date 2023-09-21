@@ -6,6 +6,23 @@ Utilities for loading and plotting a synthetic dataset
 
 from __future__ import annotations
 
+try:
+    import unsupervised_multimodal_trajectory_modeling as mtm
+except ModuleNotFoundError:
+    import subprocess, sys
+
+    subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pip",
+            "install",
+            "unsupervised_multimodal_trajectory_modeling",
+            "--upgrade",
+            "--user",
+        ],
+    )
+
 import functools
 import itertools
 import pathlib
@@ -175,9 +192,7 @@ def get_data(
     return z, x, c, ids, times
 
 
-def set_model_correspondence(
-    mdl, true_labels: np.array
-) -> None:
+def set_model_correspondence(mdl, true_labels: np.array) -> None:
     """takes a trained model and sets the cluster correspondence to minimise
      the discrepancy between A,B,C and 1,2,3 -- note that clusters are only
      determined up to relabelling; i.e. the labels themselves don't matter

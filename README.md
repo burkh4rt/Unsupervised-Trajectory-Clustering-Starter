@@ -178,14 +178,4 @@ black .
 prettier --write --print-width 79 --prose-wrap always **/*.md
 ```
 
-Send all to zfs with:
-```sh
-rsync -avhtXE \
-    --chmod=777 \
-    --groupmap="*:sambashare" \
-    --force \
-    . \
-    abg-cluster1.psychol.private.cam.ac.uk:/zfs/mcb93/unsupervised-trajectory-clustering-starter
-```
-
 -->

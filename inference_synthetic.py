@@ -166,6 +166,32 @@ def main():
         fmt_str="{:d}",
     )
 
+    util.plot_metric_vs_clusters_over_time(
+        metric=ztest[..., 0],
+        assignments=predicted_ctest,
+        metric_name="First latent dimension",
+        title="",
+        savename=pwd.joinpath("figures").joinpath(
+            "metric_v_cluster_over_time.png"
+        ),
+        show=False,
+    )
+
+    util.histograms_by_cluster(
+        metrics=np.column_stack([ztest[0], xtest[0]]),
+        metric_names=[f"z dim={i}" for i in range(ztest.shape[-1])]
+        + [f"x dim={i}" for i in range(xtest.shape[-1])],
+        clusters=predicted_ctest,
+        μσ_overlay=best_mdl.get_initial_means_and_stds(),
+        mean_overlay=False,
+        title="",
+        savename=str(
+            pwd.joinpath("figures").joinpath("histograms_by_cluster.png")
+        ),
+        show=False,
+        nbins=15,
+    )
+
 
 if __name__ == "__main__":
     main()
