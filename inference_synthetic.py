@@ -10,7 +10,6 @@ import string
 import matplotlib.pyplot as plt
 import numpy as np
 import sklearn.metrics as skl_mets
-
 from unsupervised_multimodal_trajectory_modeling.linear_gaussian import (
     marginalizable_mixture_model as mixmodel,
 )

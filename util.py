@@ -6,9 +6,9 @@ Utility functions
 
 import pathlib
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import sklearn.metrics as skl_mets
 
 pd.options.display.width = 79

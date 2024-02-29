@@ -1,6 +1,7 @@
 ## Unsupervised Trajectory Clustering: Getting Started
 
 [![DOI](https://zenodo.org/badge/692067654.svg)](https://zenodo.org/badge/latestdoi/692067654)
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:7b557966063948e3f7cfece6313419e305b96371/)](https://archive.softwareheritage.org/swh:1:dir:7b557966063948e3f7cfece6313419e305b96371;origin=https://github.com/burkh4rt/Unsupervised-Trajectory-Clustering-Starter;visit=swh:1:snp:fb317177a684cf9f7ad2a4789cf778b23836f075;anchor=swh:1:rev:f7b8f72a366324f743ac27dc15e3f6beca4b1c2c)
 
 The code uses mixtures of state space models to perform unsupervised clustering
 of short trajectories. Within the state space framework, we let
@@ -174,8 +175,20 @@ any cluster becomes too small, training automatically terminates.
 
 Format code with:
 ```
+# isort --profile black .
 black .
 prettier --write --print-width 79 --prose-wrap always **/*.md
+```
+
+Run tests:
+```
+source venv/bin/activate
+# pip3 install --upgrade -i https://test.pypi.org/simple unsupervised-multimodal-trajectory-modeling
+pip3 install --upgrade unsupervised-multimodal-trajectory-modeling
+python3 data_synthetic.py
+python3 model_selection_synthetic.py
+python3 inference_synthetic.py
+python3 inference_nonlinear.py
 ```
 
 -->

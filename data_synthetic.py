@@ -9,7 +9,8 @@ from __future__ import annotations
 try:
     import unsupervised_multimodal_trajectory_modeling as mtm
 except ModuleNotFoundError:
-    import subprocess, sys
+    import subprocess
+    import sys
 
     subprocess.run(
         [
@@ -28,16 +29,15 @@ import itertools
 import pathlib
 import string
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import sklearn.metrics as skl_mets
-
+from unsupervised_multimodal_trajectory_modeling.linear_gaussian import (
+    marginalizable_mixture_model as mixmodel,
+    marginalizable_state_space_model as mssm,
+)
 from unsupervised_multimodal_trajectory_modeling.util import (
     util_state_space as ss_util,
-)
-from unsupervised_multimodal_trajectory_modeling.linear_gaussian import (
-    marginalizable_state_space_model as mssm,
-    marginalizable_mixture_model as mixmodel,
 )
 
 name = "synthetic"

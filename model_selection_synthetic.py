@@ -9,14 +9,12 @@ import pathlib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
 from unsupervised_multimodal_trajectory_modeling.linear_gaussian import (
     marginalizable_mixture_model as mixmodel,
 )
 from unsupervised_multimodal_trajectory_modeling.util import (
     util_state_space as util,
 )
-
 
 import data_synthetic as data
 

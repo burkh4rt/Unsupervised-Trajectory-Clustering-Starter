@@ -10,11 +10,10 @@ import string
 import matplotlib.pyplot as plt
 import numpy as np
 import sklearn.metrics as skl_mets
-
 from unsupervised_multimodal_trajectory_modeling.nonlinear import (
-    state_space_model_mixture as mixmodel,
-    StateSpaceKNN as ss_knn,
     StateSpaceHybrid as ss_hybrid,
+    StateSpaceKNN as ss_knn,
+    state_space_model_mixture as mixmodel,
 )
 from unsupervised_multimodal_trajectory_modeling.util import (
     util_state_space as util,
