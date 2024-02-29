@@ -28,8 +28,6 @@ plt.rcParams["font.size"] = 12
 pwd = pathlib.Path(__file__).absolute().parent
 alpha = 1.0
 n_clusters = 3
-save_figs = True
-show_figs = True
 
 
 def main():
@@ -166,7 +164,7 @@ def main():
     )
 
     util.plot_metric_vs_clusters_over_time(
-        metric=ztest[..., 0],
+        metric=ztest_orig[..., 0],
         assignments=predicted_ctest,
         metric_name="First latent dimension",
         title="",
@@ -177,8 +175,8 @@ def main():
     )
 
     util.histograms_by_cluster(
-        metrics=np.column_stack([ztest[0], xtest[0]]),
-        metric_names=[f"z dim={i}" for i in range(ztest.shape[-1])]
+        metrics=np.column_stack([ztest_orig[0], xtest[0]]),
+        metric_names=[f"z dim={i}" for i in range(ztest_orig.shape[-1])]
         + [f"x dim={i}" for i in range(xtest.shape[-1])],
         clusters=predicted_ctest,
         μσ_overlay=best_mdl.get_initial_means_and_stds(),
@@ -189,6 +187,33 @@ def main():
         ),
         show=False,
         nbins=15,
+    )
+
+    _, probs = best_mdl.mle_cluster_assignment(
+        states=ztest,
+        observations=xtest,
+        return_probs=True,
+    )
+
+    util.plot_weighted_means_2d_trajectories(
+        weights=probs[
+            [
+                best_mdl.inverse_correspondence[s]
+                for s in string.ascii_uppercase[:n_clusters]
+            ]
+        ].T,
+        values=ztest_orig,
+        colors=[
+            "#0072CE",
+            "#E87722",
+            "#64A70B",
+        ],
+        saveloc=pwd.joinpath("figures").joinpath("weighted_cluster_means.png"),
+        xlim=(np.nanmin(ztest_orig[..., 0]), np.nanmax(ztest_orig[..., 0])),
+        ylim=(np.nanmin(ztest_orig[..., 1]), np.nanmax(ztest_orig[..., 1])),
+        xlabel="state dim = 0",
+        ylabel="state dim = 1",
+        arrow_width=0.01,
     )
 
 
