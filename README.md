@@ -182,7 +182,7 @@ prettier --write --print-width 79 --prose-wrap always **/*.md
 Run tests:
 ```
 source venv/bin/activate
-# pip3 install --upgrade -i https://test.pypi.org/simple unsupervised-multimodal-trajectory-modeling
+# pip3 install --upgrade -i https://test.pypi.org/simple unsupervised-multimodal-trajectory-modeling==2024.1.9
 pip3 install --upgrade unsupervised-multimodal-trajectory-modeling
 python3 data_synthetic.py
 python3 model_selection_synthetic.py
