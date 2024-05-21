@@ -3,14 +3,14 @@
 [![DOI](https://zenodo.org/badge/692067654.svg)](https://zenodo.org/badge/latestdoi/692067654)
 
 The code uses mixtures of state space models to perform unsupervised clustering
-of short trajectories. Within the state space framework, we let
-expensive-to-gather biomarkers correspond to hidden states and readily
-obtainable cognitive metrics correspond to measurements. Upon training with
-expectation maximization, we often find that our clusters stratify persons
-according to clinical outcome. Furthermore, we can effectively predict on
-held-out trajectories using cognitive metrics alone. Our approach accommodates
-missing data through model marginalization and generalizes across research and
-clinical cohorts.
+of short trajectories, as described in our recent paper [^1]. Within the state
+space framework, we let expensive-to-gather biomarkers correspond to hidden
+states and readily obtainable cognitive metrics correspond to measurements.
+Upon training with expectation maximization, we often find that our clusters
+stratify persons according to clinical outcome. Furthermore, we can effectively
+predict on held-out trajectories using cognitive metrics alone. Our approach
+accommodates missing data through model marginalization and generalizes across
+research and clinical cohorts.
 
 #### Data format
 
@@ -75,8 +75,7 @@ $$
 In particular, we assume that the variables we are modeling are continuous and
 changing over time. When we train a model like the above, we take a dataset
 $`\mathcal{D}`$ and an arbitrary set of cluster assignments $`c^i`$ (as these
-are also latent/ hidden from us) and iteratively perform M and E steps (from
-which EM[^2] gets its name):
+are also latent/ hidden from us) and iteratively perform M and E steps:
 
 - (E) Expectation step: given the current model, we assign each data instance
   $`(z^i_{1:T}, x^i_{1:T})`$ to the cluster to which it is mostly likely to
@@ -161,14 +160,9 @@ Some efforts have been made to handle edge cases. For a given training run, if
 any cluster becomes too small, training automatically terminates.
 
 [^1]:
-    S. Chiappa and D. Barber. _Dirichlet Mixtures of Bayesian Linear Gaussian
-    State-Space Models: a Variational Approach._ Tech. rep. 161. Max Planck
-    Institute for Biological Cybernetics, 2007.
-
-[^2]:
-    A. Dempster, N. Laird, and D. B. Rubin. _Maximum Likelihood from  
-    Incomplete Data via the EM Algorithm._ J. Roy. Stat. Soc. Ser. B (Stat.
-    Methodol.) 39.1 (1977), pp. 1–38.
+    M. Burkhart, L. Lee, D. Vaghari, A. Toh, E. Chong, C. Chen, P. Tiňo, and Z.
+    Kourtzi, _Unsupervised multimodal modeling of cognitive and brain health
+    trajectories for early dementia prediction,_ Sci. Rep. 14 (2024)
 
 <!---
 
@@ -182,7 +176,7 @@ prettier --write --print-width 79 --prose-wrap always **/*.md
 Run tests:
 ```
 source venv/bin/activate
-# pip3 install --upgrade -i https://test.pypi.org/simple unsupervised-multimodal-trajectory-modeling==2024.1.9
+# pip3 install --upgrade -i https://test.pypi.org/simple unsupervised-multimodal-trajectory-modeling==2024.2.2
 pip3 install --upgrade unsupervised-multimodal-trajectory-modeling
 python3 data_synthetic.py
 python3 model_selection_synthetic.py
